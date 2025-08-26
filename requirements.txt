@@ -1,7 +1,9 @@
 streamlit>=1.36,<2
-numpy>=1.26,<3
-pandas>=2.0,<3
+# Numpy estable para mediapipe 0.10.x
+numpy==1.26.4
+pandas>=2.2,<3
 opencv-python-headless>=4.10,<5
+# Mediapipe estable para Py <=3.12
 mediapipe==0.10.21 ; python_version < "3.13"
 scikit-learn>=1.4,<2
 joblib>=1.3,<2
