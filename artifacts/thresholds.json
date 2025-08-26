@@ -1,0 +1,15 @@
+{
+  "amplitud_baja": 0.7300000000000002,
+  "amplitud_excesiva": 0.51,
+  "amplitud_desbalance": 0.5,
+  "velocidad_media_low": 0.6200000000000001,
+  "velocidad_media_high": 0.41000000000000003,
+  "simetria_low": 0.6000000000000001,
+  "simetria_high": 0.6800000000000002,
+  "nivel_rango_low": 0.6800000000000002,
+  "nivel_rango_high": 0.6600000000000001,
+  "variedad_direcciones_low": 0.77,
+  "variedad_direcciones_high": 0.7300000000000002,
+  "frames_low": 0.5700000000000001,
+  "frames_high": 0.2
+}
