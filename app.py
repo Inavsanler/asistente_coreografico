@@ -2,7 +2,7 @@ import tempfile, os, streamlit as st, numpy as np, pandas as pd
 
 # usa SOLO init_artifacts (ya hace release + fallback ./artifacts)
 from src.artifacts_io import init_artifacts
-from src.backends import mediapipe_video_to_keypoints, yolo_video_to_keypoints
+from src.backends import mediapipe_video_to_keypoints
 from src.features import features_coreograficos
 from src.suggestions import sugerencias_reglas
 from src.model import predict_labels
@@ -57,10 +57,11 @@ def run_backend(path, backend, stride):
         return mediapipe_video_to_keypoints(path, sample_stride=int(stride))
     else:
         try:
-            return yolo_video_to_keypoints(path, model_name="yolov8n-pose.pt", conf=0.25, iou=0.5, stride=int(stride))
+            from src.backends import yolo_video_to_keypoints
         except Exception as e:
-            st.error(f"YOLOv8-Pose no disponible ({e}). Usa MediaPipe o un entorno con GPU.")
+            st.error("YOLOv8-Pose no está disponible en este entorno. Actívalo solo en GPU (ENABLE_YOLO=true) e instala 'ultralytics'.")
             st.stop()
+        return yolo_video_to_keypoints(path, model_name="yolov8n-pose.pt", conf=0.25, iou=0.5, stride=int(stride))
 
 def iter_windows(T, fps, win_s, hop_s):
     win = max(1, int(round(win_s * fps)))
