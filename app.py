@@ -86,10 +86,12 @@ if video is not None:
         feats = features_coreograficos(K[s:e], fps=fps)
         sugs = sugerencias_reglas(feats)
         labels=None; scores=None
-        if use_adv:
-            labels, scores = predict_labels(feats, artifacts_dir="artifacts", threshold=float(thr))
-        rows.append({"start_f":s, "end_f":e, "start_s":s/fps, "end_s":e/fps, **feats, "labels":"|".join(labels or [])})
-        timeline.append({"start":s/fps, "end":e/fps, "sugerencias":sugs, "labels":labels})
+if use_adv:
+    try:
+        labels, scores = predict_labels(feats, artifacts_dir="artifacts", threshold=float(thr))
+    except Exception as e:
+        st.warning("⚠️ El modelo avanzado no pudo evaluar esta ventana. Sigo con las sugerencias por reglas.")
+        labels, scores = None, None
 
     df = pd.DataFrame(rows)
     st.subheader("⏱️ Timeline de ventanas")
