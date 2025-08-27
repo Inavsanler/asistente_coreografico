@@ -7,8 +7,8 @@ from src.features import features_coreograficos
 from src.suggestions import sugerencias_reglas
 from src.model import predict_labels
 
-st.set_page_config(page_title="Asistente Coreográfico — Monorepo", layout="wide")
-st.title("🩰 Asistente Coreográfico — Monorepo (MediaPipe + YOLO)")
+st.set_page_config(page_title="Asistente Coreográfico", layout="wide")
+st.title("🩰 Asistente Coreográfico (MediaPipe + YOLO)")
 
 # --- Secrets / Artifacts init (primero intenta Release, si falla usa ./artifacts)
 ENABLE_YOLO = bool(st.secrets.get("ENABLE_YOLO", False))
